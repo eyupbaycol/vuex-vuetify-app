@@ -1,0 +1,39 @@
+<template>
+    <v-container mb-12>
+        <v-row>
+            <v-col sm="8" offset-sm="1" lg="8" offset-lg="2">
+                <h2>Popular Products <v-btn to="store" text color="primary" small>View All</v-btn></h2>
+            </v-col>
+        </v-row>
+        <v-row>
+            <v-col sm="8" offset-sm="1" lg="8" offset-lg="2">
+              <v-row>
+                  <v-col sm="6" md="4" v-for="product in salaryData" :key="product.id">
+                      <VerticalProduct  :product="product"/>
+                  </v-col>
+              </v-row>
+            </v-col>
+        </v-row>
+    </v-container>
+</template>
+
+<script>
+import VerticalProduct from '../Cards/VerticalProduct';
+import {mapGetters, mapActions} from 'vuex';
+export default {
+    components : {
+         VerticalProduct
+    },
+    data () {
+        return {
+
+        }
+    },created() {
+    this.fetchData();
+    },
+    computed: mapGetters(["salaryData"]),
+    methods :{
+        ...mapActions(["fetchData"]),
+    }
+}
+</script>
